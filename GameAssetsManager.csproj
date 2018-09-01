@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF5D25FF-51E0-480A-841F-6F1DC3D17699}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GameAssetsManager</RootNamespace>
+    <AssemblyName>GameAssetsManager</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseStatData.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScriptView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScriptView.Designer.cs">
+      <DependentUpon>FormScriptView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTextView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTextView.Designer.cs">
+      <DependentUpon>FormTextView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameEntityData.cs" />
+    <Compile Include="FormEntityView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEntityView.Designer.cs">
+      <DependentUpon>FormEntityView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextContainer.cs" />
+    <EmbeddedResource Include="FormEntityView.resx">
+      <DependentUpon>FormEntityView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScriptView.resx">
+      <DependentUpon>FormScriptView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTextView.resx">
+      <DependentUpon>FormTextView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_boomeranghit_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_brickwall_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_checkpoint_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_chest_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_chestcrab_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_conveyor_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_eventmark_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_gate_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_gate2_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_hpup_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_items_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_items_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_key_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_lever_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_map_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_mush_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_pickaxehit_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_player_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_puzzleball_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_skeleton_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_slime_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_spider_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_spirit_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_switch_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_swordhit_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_wall_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_weapons_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_weapons_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spr_weapons_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 e x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\EntityNames.txt" />
+    <None Include="Resources\Mnemonics.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
