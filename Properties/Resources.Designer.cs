@@ -73,11 +73,11 @@ namespace GameAssetsManager.Properties {
         ///OBJ_IPILL
         ///OBJ_HPUP
         ///OBJ_MAP
+        ///OBJ_FRIEND
         ///OBJ_CHEST
         ///OBJ_LOCKEDGATE
         ///OBJ_BRICKWALL
         ///OBJ_CHECKPOINT
-        ///OBJ_FRIEND
         ///OBJ_SKELETON
         ///OBJ_MUSH
         ///OBJ_SLIME
@@ -108,7 +108,42 @@ namespace GameAssetsManager.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a .
+        ///   Consulta uma cadeia de caracteres localizada semelhante a END
+        ///CREATE
+        ///DESTROY
+        ///DESTROYALL
+        ///COUNT
+        ///SETPOS
+        ///SETSPR
+        ///SETANIM
+        ///SETPATH
+        ///MOVE
+        ///MOVETO
+        ///SETFLAG
+        ///SETLOOT
+        ///GETXPOS
+        ///GETYPOS
+        ///GETANIM
+        ///GETFLAG
+        ///ISDEAD
+        ///POPUP
+        ///TEXTBOX
+        ///SETCAM
+        ///MOVECAM
+        ///WAIT
+        ///SLEEP
+        ///IF
+        ///IFNOT
+        ///GOTO
+        ///STORE
+        ///LOAD
+        ///INC
+        ///DEC
+        ///ISLESS
+        ///ISGREATER
+        ///EQUALS
+        ///LITERAL
+        ///VAR.
         /// </summary>
         internal static string Mnemonics {
             get {
@@ -403,6 +438,41 @@ namespace GameAssetsManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("spr_weapons_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a spr_dummy_0
+        ///spr_player_0
+        ///spr_key_0
+        ///spr_chest_0
+        ///spr_brickwall_0
+        ///spr_wall_0
+        ///spr_puzzleball_0
+        ///spr_switch_0
+        ///spr_lever_0
+        ///spr_conveyor_0
+        ///spr_gate_0
+        ///spr_gate2_0
+        ///spr_weapons_1
+        ///spr_items_1
+        ///spr_hpup_0
+        ///spr_map_0
+        ///spr_checkpoint_0
+        ///spr_mush_0
+        ///spr_skeleton_0
+        ///spr_slime_0
+        ///spr_spider_0
+        ///spr_spirit_0
+        ///spr_chestcrab_0
+        ///spr_eventmark_0
+        ///spr_swordhit_0
+        ///spr_pickaxehit_0
+        ///spr_boomeranghit_0.
+        /// </summary>
+        internal static string SpriteNames {
+            get {
+                return ResourceManager.GetString("SpriteNames", resourceCulture);
             }
         }
     }

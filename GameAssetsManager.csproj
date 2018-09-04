@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\EntityNames.txt" />
+    <None Include="Resources\SpriteNames.txt" />
     <None Include="Resources\Mnemonics.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

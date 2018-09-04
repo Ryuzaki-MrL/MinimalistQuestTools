@@ -18,7 +18,8 @@ namespace GameAssetsManager
             entityData = new GameEntityData[256];
             statData = new BaseStatData[256];
             for (int i = 0; i < 256; ++i) statData[i] = new BaseStatData();
-            comboBoxObj.DataSource = Properties.Resources.EntityNames.Split('\n');
+            comboBoxObj.DataSource = Properties.Resources.EntityNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            comboBoxSpr.DataSource = Properties.Resources.SpriteNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         }
 
         private void SetSelected(int idx)

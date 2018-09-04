@@ -137,7 +137,7 @@
             this.tlpTop.Location = new System.Drawing.Point(0, 24);
             this.tlpTop.Name = "tlpTop";
             this.tlpTop.RowCount = 1;
-            this.tlpTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+            this.tlpTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124F));
             this.tlpTop.Size = new System.Drawing.Size(428, 122);
             this.tlpTop.TabIndex = 0;
             // 
@@ -147,7 +147,7 @@
             this.groupBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxPreview.Location = new System.Drawing.Point(323, 4);
             this.groupBoxPreview.Name = "groupBoxPreview";
-            this.groupBoxPreview.Size = new System.Drawing.Size(101, 117);
+            this.groupBoxPreview.Size = new System.Drawing.Size(101, 118);
             this.groupBoxPreview.TabIndex = 0;
             this.groupBoxPreview.TabStop = false;
             this.groupBoxPreview.Text = "Preview";
@@ -157,7 +157,7 @@
             this.pictureBoxSprite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSprite.Location = new System.Drawing.Point(3, 16);
             this.pictureBoxSprite.Name = "pictureBoxSprite";
-            this.pictureBoxSprite.Size = new System.Drawing.Size(95, 98);
+            this.pictureBoxSprite.Size = new System.Drawing.Size(95, 99);
             this.pictureBoxSprite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxSprite.TabIndex = 0;
             this.pictureBoxSprite.TabStop = false;
@@ -174,7 +174,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(312, 117);
+            this.panel1.Size = new System.Drawing.Size(312, 118);
             this.panel1.TabIndex = 1;
             // 
             // numericBoxAnim
@@ -211,34 +211,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSpr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSpr.FormattingEnabled = true;
-            this.comboBoxSpr.Items.AddRange(new object[] {
-            "spr_dummy_0",
-            "spr_player_0",
-            "spr_key_0",
-            "spr_chest_0",
-            "spr_brickwall_0",
-            "spr_wall_0",
-            "spr_puzzleball_0",
-            "spr_switch_0",
-            "spr_lever_0",
-            "spr_conveyor_0",
-            "spr_gate_0",
-            "spr_gate2_0",
-            "spr_weapons_1",
-            "spr_items_1",
-            "spr_hpup_0",
-            "spr_map_0",
-            "spr_checkpoint_0",
-            "spr_mush_0",
-            "spr_skeleton_0",
-            "spr_slime_0",
-            "spr_spider_0",
-            "spr_spirit_0",
-            "spr_chestcrab_0",
-            "spr_eventmark_0",
-            "spr_swordhit_0",
-            "spr_pickaxehit_0",
-            "spr_boomeranghit_0"});
             this.comboBoxSpr.Location = new System.Drawing.Point(3, 85);
             this.comboBoxSpr.Name = "comboBoxSpr";
             this.comboBoxSpr.Size = new System.Drawing.Size(229, 21);
