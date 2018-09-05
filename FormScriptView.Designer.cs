@@ -53,8 +53,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.Controls.Add(this.listBoxScr, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBoxScr, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,8 +62,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 282F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(456, 282);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 287);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // listBoxScr
@@ -73,7 +72,7 @@
             this.listBoxScr.FormattingEnabled = true;
             this.listBoxScr.Location = new System.Drawing.Point(3, 3);
             this.listBoxScr.Name = "listBoxScr";
-            this.listBoxScr.Size = new System.Drawing.Size(146, 276);
+            this.listBoxScr.Size = new System.Drawing.Size(139, 281);
             this.listBoxScr.TabIndex = 4;
             this.listBoxScr.SelectedIndexChanged += new System.EventHandler(this.listBoxScr_SelectedIndexChanged);
             // 
@@ -84,7 +83,7 @@
             this.renameToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 70);
             // 
             // insertToolStripMenuItem
             // 
@@ -96,7 +95,7 @@
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
@@ -111,10 +110,10 @@
             // 
             this.textBoxScr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxScr.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxScr.Location = new System.Drawing.Point(155, 3);
+            this.textBoxScr.Location = new System.Drawing.Point(148, 3);
             this.textBoxScr.Multiline = true;
             this.textBoxScr.Name = "textBoxScr";
-            this.textBoxScr.Size = new System.Drawing.Size(298, 276);
+            this.textBoxScr.Size = new System.Drawing.Size(333, 281);
             this.textBoxScr.TabIndex = 5;
             this.textBoxScr.TextChanged += new System.EventHandler(this.textBoxScr_TextChanged);
             // 
@@ -124,7 +123,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(456, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(484, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -158,6 +157,7 @@
             this.compileToolStripMenuItem.Name = "compileToolStripMenuItem";
             this.compileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.compileToolStripMenuItem.Text = "Compile";
+            this.compileToolStripMenuItem.Click += new System.EventHandler(this.compileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -174,12 +174,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 306);
+            this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(500, 350);
             this.Name = "FormScriptView";
             this.Text = "GameScriptView";
             this.tableLayoutPanel1.ResumeLayout(false);
