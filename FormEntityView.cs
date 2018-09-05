@@ -12,14 +12,24 @@ namespace GameAssetsManager
         private int sel;
         private int statTableSize, entityCount;
 
+        public static string[] GetEntityNames()
+        {
+            return Properties.Resources.EntityNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        }
+
+        public static string[] GetSpriteNames()
+        {
+            return Properties.Resources.SpriteNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        }
+
         public FormEntityView()
         {
             InitializeComponent();
             entityData = new GameEntityData[256];
             statData = new BaseStatData[256];
             for (int i = 0; i < 256; ++i) statData[i] = new BaseStatData();
-            comboBoxObj.DataSource = Properties.Resources.EntityNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-            comboBoxSpr.DataSource = Properties.Resources.SpriteNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            comboBoxObj.DataSource = GetEntityNames();
+            comboBoxSpr.DataSource = GetSpriteNames();
         }
 
         private void SetSelected(int idx)

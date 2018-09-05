@@ -11,11 +11,15 @@ namespace GameAssetsManager
         private Dictionary<string, string> scripts = new Dictionary<string, string>();
         private BindingList<string> scrnames = new BindingList<string>();
         private string fname = "";
+        private Dictionary<string, byte> mnemonics = new Dictionary<string, byte>();
 
         public FormScriptView()
         {
             InitializeComponent();
             listBoxScr.DataSource = scrnames;
+            string[] s = Properties.Resources.Mnemonics.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            for (byte i = 0; i < s.Length; ++i)
+                mnemonics[s[i]] = i;
         }
 
         private void listBoxScr_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,8 +61,7 @@ namespace GameAssetsManager
             {
                 fname = openFileDialog1.FileName;
                 scrnames.Clear();
-                FileStream fs = File.OpenRead(openFileDialog1.FileName);
-                BinaryReader br = new BinaryReader(fs);
+                BinaryReader br = new BinaryReader(File.OpenRead(openFileDialog1.FileName));
                 byte scrCount = br.ReadByte();
                 for (int i = 0; i < scrCount; ++i)
                     scrnames.Add(br.ReadString());
@@ -74,8 +77,7 @@ namespace GameAssetsManager
             if (!saveFileDialog1.FileName.Equals(String.Empty) || saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 fname = saveFileDialog1.FileName;
-                FileStream fs = File.OpenWrite(saveFileDialog1.FileName);
-                BinaryWriter bw = new BinaryWriter(fs);
+                BinaryWriter bw = new BinaryWriter(File.Open(saveFileDialog1.FileName, FileMode.Truncate));
                 bw.Write((Byte)scrnames.Count);
                 foreach (string s in scrnames) bw.Write(s);
                 foreach (string s in scrnames) bw.Write(scripts[s]);
@@ -92,6 +94,40 @@ namespace GameAssetsManager
                 scripts[input.GetResult()] = scripts[scrnames[listBoxScr.SelectedIndex]];
                 scrnames[listBoxScr.SelectedIndex] = input.GetResult();
             }
+        }
+
+        private void compileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog2.ShowDialog() != DialogResult.OK)
+                return;
+            RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog2.FileName, FileMode.Truncate));
+            List<string> tokens = new List<string>();
+            bw.WriteSize(listBoxScr.Items.Count);
+            foreach (string sname in listBoxScr.Items)
+            {
+                string[] lines = scripts[sname].Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                int slen = tokens.Count;
+                foreach (string s in lines)
+                    tokens.AddRange(s.Split(' '));
+                bw.WriteSize(tokens.Count - slen);
+            }
+            foreach (string token in tokens)
+            {
+                int entid = Array.IndexOf(FormEntityView.GetEntityNames(), token);
+                int sprid = Array.IndexOf(FormEntityView.GetSpriteNames(), token);
+                byte literal = 0;
+                if (mnemonics.ContainsKey(token))
+                    bw.Write(mnemonics[token]);
+                else if (entid != -1)
+                    bw.Write((Byte)entid);
+                else if (sprid != -1)
+                    bw.Write((Byte)sprid);
+                else if (Byte.TryParse(token, out literal))
+                    bw.Write(literal);
+                else
+                    bw.Write((Byte)0xFF);
+            }
+            bw.Close();
         }
     }
 }

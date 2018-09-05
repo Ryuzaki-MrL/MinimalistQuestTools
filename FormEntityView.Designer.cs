@@ -137,27 +137,25 @@
             this.tlpTop.Location = new System.Drawing.Point(0, 24);
             this.tlpTop.Name = "tlpTop";
             this.tlpTop.RowCount = 1;
-            this.tlpTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tlpTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tlpTop.Size = new System.Drawing.Size(428, 122);
             this.tlpTop.TabIndex = 0;
             // 
             // groupBoxPreview
             // 
             this.groupBoxPreview.Controls.Add(this.pictureBoxSprite);
-            this.groupBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxPreview.Location = new System.Drawing.Point(323, 4);
             this.groupBoxPreview.Name = "groupBoxPreview";
-            this.groupBoxPreview.Size = new System.Drawing.Size(101, 118);
+            this.groupBoxPreview.Size = new System.Drawing.Size(101, 113);
             this.groupBoxPreview.TabIndex = 0;
             this.groupBoxPreview.TabStop = false;
             this.groupBoxPreview.Text = "Preview";
             // 
             // pictureBoxSprite
             // 
-            this.pictureBoxSprite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxSprite.Location = new System.Drawing.Point(3, 16);
             this.pictureBoxSprite.Name = "pictureBoxSprite";
-            this.pictureBoxSprite.Size = new System.Drawing.Size(95, 99);
+            this.pictureBoxSprite.Size = new System.Drawing.Size(95, 91);
             this.pictureBoxSprite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxSprite.TabIndex = 0;
             this.pictureBoxSprite.TabStop = false;
@@ -171,10 +169,9 @@
             this.panel1.Controls.Add(this.labelObj);
             this.panel1.Controls.Add(this.comboBoxObj);
             this.panel1.Controls.Add(this.textBoxFile);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(312, 118);
+            this.panel1.Size = new System.Drawing.Size(312, 113);
             this.panel1.TabIndex = 1;
             // 
             // numericBoxAnim
@@ -373,7 +370,7 @@
             this.tabPageStats.Location = new System.Drawing.Point(4, 22);
             this.tabPageStats.Name = "tabPageStats";
             this.tabPageStats.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStats.Size = new System.Drawing.Size(420, 223);
+            this.tabPageStats.Size = new System.Drawing.Size(420, 222);
             this.tabPageStats.TabIndex = 1;
             this.tabPageStats.Text = "Misc";
             this.tabPageStats.UseVisualStyleBackColor = true;
@@ -405,7 +402,7 @@
             this.groupBoxStats.Controls.Add(this.BaseExp);
             this.groupBoxStats.Controls.Add(this.label5);
             this.groupBoxStats.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBoxStats.Location = new System.Drawing.Point(3, 39);
+            this.groupBoxStats.Location = new System.Drawing.Point(3, 38);
             this.groupBoxStats.Name = "groupBoxStats";
             this.groupBoxStats.Size = new System.Drawing.Size(414, 181);
             this.groupBoxStats.TabIndex = 4;
