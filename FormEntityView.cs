@@ -10,7 +10,7 @@ namespace GameAssetsManager
         private GameEntityData[] entityData;
         private BaseStatData[] statData;
         private int sel;
-        private Byte statTableSize, entityCount;
+        private int statTableSize, entityCount;
 
         public FormEntityView()
         {
@@ -42,13 +42,11 @@ namespace GameAssetsManager
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBoxFile.Text = openFileDialog1.FileName;
-                FileStream fs = File.OpenRead(openFileDialog1.FileName);
-                BinaryReader br = new BinaryReader(fs);
-                br.ReadInt32();
-                entityCount = br.ReadByte();
+                RZDBReader br = new RZDBReader(File.OpenRead(openFileDialog1.FileName));
+                entityCount = br.ReadSize();
                 for (int i = 0; i < entityCount; ++i)
                     entityData[i] = new GameEntityData(br);
-                statTableSize = br.ReadByte();
+                statTableSize = br.ReadSize();
                 for (int i = 0; i < statTableSize; ++i)
                     statData[i] = new BaseStatData(br);
                 br.Close();
@@ -92,13 +90,11 @@ namespace GameAssetsManager
             if (!saveFileDialog1.FileName.Equals(String.Empty) || saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBoxFile.Text = saveFileDialog1.FileName;
-                FileStream fs = File.OpenWrite(saveFileDialog1.FileName);
-                BinaryWriter bw = new BinaryWriter(fs);
-                bw.Write(0x42445a52); // RZDB
-                bw.Write((Byte)comboBoxObj.Items.Count);
+                RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog1.FileName, FileMode.Truncate));
+                bw.WriteSize(comboBoxObj.Items.Count);
                 for (int i = 0; i < comboBoxObj.Items.Count; ++i)
                     entityData[i].ToStream(bw);
-                bw.Write(statTableSize);
+                bw.WriteSize(statTableSize);
                 for (int i = 0; i < statTableSize; ++i)
                     statData[i].ToStream(bw);
                 bw.Close();
@@ -114,19 +110,20 @@ namespace GameAssetsManager
         private void numericStats_ValueChanged(object sender, EventArgs e)
         {
             entityData[sel].StatTableEntry = (Byte)numericStats.Value;
-            if (numericStats.Value > statTableSize) statTableSize = (Byte)numericStats.Value;
-            BaseExp.Value = statData[(int)numericStats.Value].BaseExp;
-            BaseAtk.Value = statData[(int)numericStats.Value].BaseAtk;
-            BaseDef.Value = statData[(int)numericStats.Value].BaseDef;
-            BaseSpd.Value = statData[(int)numericStats.Value].BaseSpd;
-            BaseHP.Value = statData[(int)numericStats.Value].BaseHP;
-            BaseRad.Value = statData[(int)numericStats.Value].BaseRad;
-            BaseImm.Value = statData[(int)numericStats.Value].BaseImm;
-            GrowAtk.Value = statData[(int)numericStats.Value].GrowAtk;
-            GrowDef.Value = statData[(int)numericStats.Value].GrowDef;
-            GrowSpd.Value = statData[(int)numericStats.Value].GrowSpd;
-            GrowRad.Value = statData[(int)numericStats.Value].GrowRad;
-            GrowHP.Value = statData[(int)numericStats.Value].GrowHP;
+            int idx = (int)numericStats.Value;
+            if (numericStats.Value > statTableSize) statTableSize = idx;
+            BaseExp.Value = statData[idx].BaseExp;
+            BaseAtk.Value = statData[idx].BaseAtk;
+            BaseDef.Value = statData[idx].BaseDef;
+            BaseSpd.Value = statData[idx].BaseSpd;
+            BaseHP.Value  = statData[idx].BaseHP;
+            BaseRad.Value = statData[idx].BaseRad;
+            BaseImm.Value = statData[idx].BaseImm;
+            GrowAtk.Value = statData[idx].GrowAtk;
+            GrowDef.Value = statData[idx].GrowDef;
+            GrowSpd.Value = statData[idx].GrowSpd;
+            GrowRad.Value = statData[idx].GrowRad;
+            GrowHP.Value  = statData[idx].GrowHP;
         }
 
         private void comboBoxPath_SelectedIndexChanged(object sender, EventArgs e)

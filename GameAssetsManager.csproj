@@ -94,9 +94,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RZDB.cs" />
     <Compile Include="TextContainer.cs" />
     <EmbeddedResource Include="FormEntityView.resx">
       <DependentUpon>FormEntityView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

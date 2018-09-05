@@ -15,13 +15,11 @@ namespace GameAssetsManager
         {
             entries.Clear();
             langs.Clear();
-            FileStream fs = File.OpenRead(fname);
-            BinaryReader br = new BinaryReader(fs);
-            br.ReadInt32();
-            Byte langCount = br.ReadByte();
+            RZDBReader br = new RZDBReader(File.OpenRead(fname));
+            int langCount = br.ReadSize();
             for (int i = 0; i < langCount; ++i)
                 AddLanguage(br.ReadString());
-            Byte messageCount = br.ReadByte();
+            int messageCount = br.ReadSize();
             for (int i = 0; i < messageCount; ++i)
                 AddMessageEntry(br.ReadString());
             for (int i = 0; i < langCount; ++i)
@@ -32,13 +30,11 @@ namespace GameAssetsManager
 
         public void Save(string fname)
         {
-            FileStream fs = File.OpenWrite(fname);
-            BinaryWriter bw = new BinaryWriter(fs);
-            bw.Write(0x42445a52); // RZDB
-            bw.Write((Byte)langs.Count);
+            RZDBWriter bw = new RZDBWriter(File.Open(fname, FileMode.Truncate));
+            bw.WriteSize(langs.Count);
             for (int i = 0; i < langs.Count; ++i)
                 bw.Write(langs[i]);
-            bw.Write((Byte)entries.Count);
+            bw.WriteSize(entries.Count);
             for (int i = 0; i < entries.Count; ++i)
                 bw.Write(entries[i]);
             for (int i = 0; i < langs.Count; ++i)
