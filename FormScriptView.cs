@@ -102,14 +102,24 @@ namespace GameAssetsManager
                 return;
             RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog2.FileName, FileMode.Create));
             List<string> tokens = new List<string>();
+            Dictionary<string, int> labels = new Dictionary<string, int>();
             bw.WriteSize(listBoxScr.Items.Count);
             foreach (string sname in listBoxScr.Items)
             {
                 string[] lines = scripts[sname].Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-                int slen = tokens.Count;
+                int slen, tkcount = 0;
                 foreach (string s in lines)
+                {
+                    if (s.StartsWith("_"))
+                    {
+                        labels[s] = tkcount;
+                        continue;
+                    }
+                    slen = tokens.Count;
                     tokens.AddRange(s.Split(' '));
-                bw.WriteSize(tokens.Count - slen);
+                    tkcount += tokens.Count - slen;
+                }
+                bw.WriteSize(tkcount);
             }
             foreach (string token in tokens)
             {
@@ -118,16 +128,23 @@ namespace GameAssetsManager
                 byte literal = 0;
                 if (mnemonics.ContainsKey(token))
                     bw.Write(mnemonics[token]);
-                else if (entid != -1)
-                    bw.Write((Byte)entid);
-                else if (sprid != -1)
-                    bw.Write((Byte)sprid);
                 else if (Byte.TryParse(token, out literal))
                     bw.Write(literal);
                 else
-                    bw.Write((Byte)0xFF);
+                {
+                    bw.Write(mnemonics["LITERAL"]);
+                    if (entid != -1)
+                        bw.Write((Byte)entid);
+                    else if (sprid != -1)
+                        bw.Write((Byte)sprid);
+                    else if (labels.ContainsKey(token))
+                        bw.Write((Byte)labels[token]);
+                    else
+                        bw.Write((Byte)0xFF);
+                }
             }
             bw.Close();
+            MessageBox.Show("OK");
         }
     }
 }
