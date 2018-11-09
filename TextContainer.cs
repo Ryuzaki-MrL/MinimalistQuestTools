@@ -30,7 +30,7 @@ namespace GameAssetsManager
 
         public void Save(string fname)
         {
-            RZDBWriter bw = new RZDBWriter(File.Open(fname, FileMode.Truncate));
+            RZDBWriter bw = new RZDBWriter(File.Open(fname, FileMode.Create));
             bw.WriteSize(langs.Count);
             for (int i = 0; i < langs.Count; ++i)
                 bw.Write(langs[i]);

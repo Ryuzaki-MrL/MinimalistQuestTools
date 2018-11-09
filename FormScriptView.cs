@@ -77,7 +77,7 @@ namespace GameAssetsManager
             if (!saveFileDialog1.FileName.Equals(String.Empty) || saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 fname = saveFileDialog1.FileName;
-                BinaryWriter bw = new BinaryWriter(File.Open(saveFileDialog1.FileName, FileMode.Truncate));
+                BinaryWriter bw = new BinaryWriter(File.Open(saveFileDialog1.FileName, FileMode.Create));
                 bw.Write((Byte)scrnames.Count);
                 foreach (string s in scrnames) bw.Write(s);
                 foreach (string s in scrnames) bw.Write(scripts[s]);
@@ -100,7 +100,7 @@ namespace GameAssetsManager
         {
             if (saveFileDialog2.ShowDialog() != DialogResult.OK)
                 return;
-            RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog2.FileName, FileMode.Truncate));
+            RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog2.FileName, FileMode.Create));
             List<string> tokens = new List<string>();
             bw.WriteSize(listBoxScr.Items.Count);
             foreach (string sname in listBoxScr.Items)

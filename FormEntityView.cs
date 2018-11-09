@@ -100,7 +100,7 @@ namespace GameAssetsManager
             if (!saveFileDialog1.FileName.Equals(String.Empty) || saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBoxFile.Text = saveFileDialog1.FileName;
-                RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog1.FileName, FileMode.Truncate));
+                RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog1.FileName, FileMode.Create));
                 bw.WriteSize(comboBoxObj.Items.Count);
                 for (int i = 0; i < comboBoxObj.Items.Count; ++i)
                     entityData[i].ToStream(bw);
