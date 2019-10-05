@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using GameAssetsManager.Properties;
 
 namespace GameAssetsManager
 {
@@ -8,6 +9,11 @@ namespace GameAssetsManager
         public FormMain()
         {
             InitializeComponent();
+            if (Settings.Default.rootpath.Equals(String.Empty) && folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.rootpath = folderBrowserDialog1.SelectedPath + "\\";
+                Settings.Default.Save();
+            }
         }
 
         private void buttonEntityView_Click(object sender, EventArgs e)
@@ -26,6 +32,11 @@ namespace GameAssetsManager
         {
             FormScriptView scriptView = new FormScriptView();
             scriptView.ShowDialog();
+        }
+
+        private void buttonMapView_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

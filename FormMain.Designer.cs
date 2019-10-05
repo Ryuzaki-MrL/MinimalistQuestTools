@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonScriptView = new System.Windows.Forms.Button();
+            this.buttonMapView = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.buttonTextView = new System.Windows.Forms.Button();
             this.buttonSpriteView = new System.Windows.Forms.Button();
             this.buttonEntityView = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.buttonScriptView = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,15 +48,15 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonScriptView, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonMapView, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel6, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel5, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonTextView, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonSpriteView, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonEntityView, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.buttonScriptView, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -67,16 +68,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 261);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // buttonScriptView
+            // buttonMapView
             // 
-            this.buttonScriptView.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonScriptView.Location = new System.Drawing.Point(7, 114);
-            this.buttonScriptView.Name = "buttonScriptView";
-            this.buttonScriptView.Size = new System.Drawing.Size(80, 32);
-            this.buttonScriptView.TabIndex = 3;
-            this.buttonScriptView.Text = "ScriptView";
-            this.buttonScriptView.UseVisualStyleBackColor = true;
-            this.buttonScriptView.Click += new System.EventHandler(this.buttonScriptView_Click);
+            this.buttonMapView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonMapView.Location = new System.Drawing.Point(101, 114);
+            this.buttonMapView.Name = "buttonMapView";
+            this.buttonMapView.Size = new System.Drawing.Size(80, 32);
+            this.buttonMapView.TabIndex = 5;
+            this.buttonMapView.Text = "MapView";
+            this.buttonMapView.UseVisualStyleBackColor = true;
+            this.buttonMapView.Click += new System.EventHandler(this.buttonMapView_Click);
             // 
             // panel6
             // 
@@ -104,15 +105,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(80, 32);
             this.panel3.TabIndex = 4;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(101, 114);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(80, 32);
-            this.panel2.TabIndex = 4;
             // 
             // buttonTextView
             // 
@@ -155,6 +147,17 @@
             this.panel4.Size = new System.Drawing.Size(80, 32);
             this.panel4.TabIndex = 4;
             // 
+            // buttonScriptView
+            // 
+            this.buttonScriptView.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonScriptView.Location = new System.Drawing.Point(7, 114);
+            this.buttonScriptView.Name = "buttonScriptView";
+            this.buttonScriptView.Size = new System.Drawing.Size(80, 32);
+            this.buttonScriptView.TabIndex = 3;
+            this.buttonScriptView.Text = "ScriptView";
+            this.buttonScriptView.UseVisualStyleBackColor = true;
+            this.buttonScriptView.Click += new System.EventHandler(this.buttonScriptView_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,11 +179,12 @@
         private System.Windows.Forms.Button buttonTextView;
         private System.Windows.Forms.Button buttonSpriteView;
         private System.Windows.Forms.Button buttonEntityView;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonScriptView;
+        private System.Windows.Forms.Button buttonMapView;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

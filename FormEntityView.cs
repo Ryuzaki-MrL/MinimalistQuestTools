@@ -2,6 +2,7 @@
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using GameAssetsManager.Properties;
 
 namespace GameAssetsManager
 {
@@ -14,12 +15,12 @@ namespace GameAssetsManager
 
         public static string[] GetEntityNames()
         {
-            return Properties.Resources.EntityNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            return Resources.EntityNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         }
 
         public static string[] GetSpriteNames()
         {
-            return Properties.Resources.SpriteNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            return Resources.SpriteNames.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         }
 
         public FormEntityView()
@@ -30,6 +31,8 @@ namespace GameAssetsManager
             for (int i = 0; i < 256; ++i) statData[i] = new BaseStatData();
             comboBoxObj.DataSource = GetEntityNames();
             comboBoxSpr.DataSource = GetSpriteNames();
+            if (!Settings.Default.rootpath.Equals(String.Empty))
+                LoadFromFile(Settings.Default.rootpath + "entities.rzdb");
         }
 
         private void SetSelected(int idx)
@@ -47,12 +50,12 @@ namespace GameAssetsManager
             numericStats.Value = entityData[idx].StatTableEntry;
         }
 
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadFromFile(string fname)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                textBoxFile.Text = openFileDialog1.FileName;
-                RZDBReader br = new RZDBReader(File.OpenRead(openFileDialog1.FileName));
+                textBoxFile.Text = fname;
+                RZDBReader br = new RZDBReader(File.OpenRead(fname));
                 entityCount = br.ReadSize();
                 for (int i = 0; i < entityCount; ++i)
                     entityData[i] = new GameEntityData(br);
@@ -62,11 +65,21 @@ namespace GameAssetsManager
                 br.Close();
                 comboBoxObj.SelectedIndex = 0;
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid file.");
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                LoadFromFile(openFileDialog1.FileName);
         }
 
         private void comboBoxSpr_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pictureBoxSprite.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject(comboBoxSpr.SelectedItem.ToString());
+            pictureBoxSprite.Image = (Bitmap)Resources.ResourceManager.GetObject(comboBoxSpr.SelectedItem.ToString());
             entityData[sel].Sprite = (Byte)comboBoxSpr.SelectedIndex;
         }
 
@@ -146,6 +159,16 @@ namespace GameAssetsManager
             //DialogResult result = MessageBox.Show("Save changes?", "GameAssetsManager", MessageBoxButtons.YesNo);
             //if (result == DialogResult.Yes)
             //    saveToolStripMenuItem_Click(saveToolStripMenuItem, EventArgs.Empty);
+        }
+
+        private void addToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // TODO
         }
 
         private void editBaseStatTable(object sender, EventArgs e)

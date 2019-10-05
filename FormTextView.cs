@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using GameAssetsManager.Properties;
 
 namespace GameAssetsManager
 {
@@ -12,6 +13,8 @@ namespace GameAssetsManager
             InitializeComponent();
             comboBoxLang.DataSource = txt.langs;
             listBoxMsg.DataSource = txt.entries;
+            if (!Settings.Default.rootpath.Equals(String.Empty))
+                txt.Load(textBoxFile.Text = Settings.Default.rootpath + "messages.rzdb");
         }
 
         private void LoadTextLang()
@@ -86,10 +89,7 @@ namespace GameAssetsManager
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                textBoxFile.Text = openFileDialog1.FileName;
-                txt.Load(openFileDialog1.FileName);
-            }
+                txt.Load(textBoxFile.Text = openFileDialog1.FileName);
         }
 
         private void insertToolStripMenuItem_Click(object sender, EventArgs e)

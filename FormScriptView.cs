@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using GameAssetsManager.Properties;
 
 namespace GameAssetsManager
 {
     public partial class FormScriptView : Form
     {
         private Dictionary<string, string> scripts = new Dictionary<string, string>();
-        private BindingList<string> scrnames = new BindingList<string>();
-        private string fname = "";
         private Dictionary<string, byte> mnemonics = new Dictionary<string, byte>();
+        private BindingList<string> scrnames = new BindingList<string>();
+        private TextContainer msgref = new TextContainer();
+        private string fname = "";
 
         public FormScriptView()
         {
             InitializeComponent();
             listBoxScr.DataSource = scrnames;
-            string[] s = Properties.Resources.Mnemonics.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            string[] s = Resources.Mnemonics.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             for (byte i = 0; i < s.Length; ++i)
                 mnemonics[s[i]] = i;
+            mnemonics["L"] = mnemonics["LITERAL"];
+            mnemonics["V"] = mnemonics["VAR"];
+            if (!Settings.Default.rootpath.Equals(String.Empty))
+                msgref.Load(Settings.Default.rootpath + "messages.rzdb");
         }
 
         private void listBoxScr_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,16 +104,21 @@ namespace GameAssetsManager
 
         private void compileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog2.ShowDialog() != DialogResult.OK)
+            string destfile = "";
+            if (!Settings.Default.rootpath.Equals(String.Empty))
+                destfile = Settings.Default.rootpath + "scripts.rzdb";
+            else if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+                destfile = saveFileDialog2.FileName;
+            if (destfile.Equals(String.Empty))
                 return;
-            RZDBWriter bw = new RZDBWriter(File.Open(saveFileDialog2.FileName, FileMode.Create));
-            List<string> tokens = new List<string>();
-            Dictionary<string, int> labels = new Dictionary<string, int>();
+            RZDBWriter bw = new RZDBWriter(File.Open(destfile, FileMode.Create));
             bw.WriteSize(listBoxScr.Items.Count);
             foreach (string sname in listBoxScr.Items)
             {
+                List<string> tokens = new List<string>();
+                Dictionary<string, int> labels = new Dictionary<string, int>();
                 string[] lines = scripts[sname].Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-                int slen, tkcount = 0;
+                int tkcount = 0;
                 foreach (string s in lines)
                 {
                     if (s.StartsWith("_"))
@@ -115,32 +126,34 @@ namespace GameAssetsManager
                         labels[s] = tkcount;
                         continue;
                     }
-                    slen = tokens.Count;
+                    int slen = tokens.Count;
                     tokens.AddRange(s.Split(' '));
                     tkcount += tokens.Count - slen;
                 }
-                bw.WriteSize(tkcount);
-            }
-            foreach (string token in tokens)
-            {
-                int entid = Array.IndexOf(FormEntityView.GetEntityNames(), token);
-                int sprid = Array.IndexOf(FormEntityView.GetSpriteNames(), token);
-                byte literal = 0;
-                if (mnemonics.ContainsKey(token))
-                    bw.Write(mnemonics[token]);
-                else if (Byte.TryParse(token, out literal))
-                    bw.Write(literal);
-                else
+                bw.WriteSize(tokens.Count);
+                foreach (string token in tokens)
                 {
-                    bw.Write(mnemonics["LITERAL"]);
-                    if (entid != -1)
-                        bw.Write((Byte)entid);
-                    else if (sprid != -1)
-                        bw.Write((Byte)sprid);
-                    else if (labels.ContainsKey(token))
-                        bw.Write((Byte)labels[token]);
+                    int entid = Array.IndexOf(FormEntityView.GetEntityNames(), token);
+                    int sprid = Array.IndexOf(FormEntityView.GetSpriteNames(), token);
+                    int msgid = msgref.entries.IndexOf(token);
+                    sbyte literal = 0;
+                    if (mnemonics.ContainsKey(token))
+                        bw.Write(mnemonics[token]);
+                    else if (SByte.TryParse(token, out literal))
+                        bw.Write(literal);
                     else
-                        bw.Write((Byte)0xFF);
+                    {
+                        if (entid != -1)
+                            bw.Write((Byte)entid);
+                        else if (sprid != -1)
+                            bw.Write((Byte)sprid);
+                        else if (msgid != -1)
+                            bw.Write((Byte)msgid);
+                        else if (labels.ContainsKey(token))
+                            bw.Write((Byte)labels[token]);
+                        else
+                            bw.Write((Byte)0xFF);
+                    }
                 }
             }
             bw.Close();
